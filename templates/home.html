@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Font Cannibals{% endblock %}
+
+{% block content %}
+<div class="innerContent">
+    <div class="home-heading">
+        <h2>All Fonts ({{ font_info|length }})</h2>
+
+        <!-- Sample text input -->
+        <div class="sampleTextFormContainer">
+            <form action="/?sample_text={{sample_text}}">
+                {% if sample_text %}
+                    <input type="text" id="sample_text" name="sample_text" value="{{sample_text}}">
+                {% else %}
+                    <input type="text" id="sample_text" name="sample_text" placeholder="Enter sample text here">
+                {% endif %}
+                <input type="submit" class="pure-button" value="View">
+            </form>
+        </div>
+    </div>
+
+    <!-- Display Font names -->
+    {% for font in font_info %}
+        {{ font_widget(font, sample_text) }}
+    {% endfor %}
+</div>
+{% endblock %}

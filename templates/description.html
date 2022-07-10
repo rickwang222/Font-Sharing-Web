@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Font Cannibals{% endblock %}
+
+{% block content %}
+<div class="font-details">
+    <div class="break"></div>
+    <div class="font-details-content">
+        <div class="font-details-info">
+
+            <style>
+                @font-face {
+                    font-family: "{{ name }}";
+                    src: url('{{ url_for("get_font_data", font_id=id )}}') format("opentype"),
+                    url('{{ url_for("get_font_data", font_id=id )}}') format("truetype"),
+                    url('{{ url_for("get_font_data", font_id=id )}}') format("woff");
+                }
+            </style>
+
+            <div class="font-details-element font-details-title" style="font-family: '{{ name }}';"> 
+                {{ name }}
+            </div>
+
+            <div class="font-details-element">
+                <div id="desc" class="font-details-description"> {{ description }} </div>
+                <form action="{{ url_for('edit_font_desc', font_id=id) }}" id="form" method="POST" class="font-details-element">
+                    <input type="text" name="desc" id="desc" value="{{ description }}">
+                    <button type="submit" class="pure-button button button-green" onclick="toggleEditFontMode()">Confirm</button>
+                    <button class="pure-button button button-red" onclick="toggleEditFontMode()">Cancel</button>
+                </form>
+            </div>
+            <div class="font-details-element font-details-buttons">
+                <button class="pure-button button button-green" onclick="toggleEditFontMode()" id="editDesc">Edit Description</button>
+                <a class="pure-button button-red" href="/delete/{{ id }}"><i class="fa-solid fa-trash-can"></i></a>
+            </div>
+        </div>
+        <div class="font-details-download">
+            <div class="font-details-download-element"> Uploaded by: <a href="/profile/{{ get_uploader_id(id) }}">{{ uploader_name }}</a> </div>
+            <div class="font-details-download-element"><a class="pure-button" href="/upload/{{ id }}"> Download Font </a></div>
+            <div class="font-details-download-element"> Number of downloads: {{ downloads }}</div>
+        </div>
+    </div>
+    <div class="break"></div>
+</div>
+<script src="../static/scripts/description.js"></script>
+<script src="https://kit.fontawesome.com/37e300b6fc.js" crossorigin="anonymous"></script>
+{% endblock %}

@@ -1,0 +1,240 @@
+:root{
+    --black: #212121;
+    --white: #f1f1f1;
+    --base-color: #A1A9B1;
+    --primary-color: #5299e0;
+    --secondary-color: #494c4e;
+    --tertiary-color: #E3673B;
+    --green: #37c73e;
+    --red: #be3232;
+    --header-height: 72px;
+}
+
+/* BODY */
+body{
+    background-color: var(--white);
+    color: var(--black);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    height: var(--header-height);
+}
+
+#content {
+    padding: 1em;
+    height: calc(100% - var(--header-height));
+}
+.innerContent {
+    background: #dde3ed;
+    width: 70%;
+    margin: auto;
+    border-radius: 20px;
+    padding: 4px 16px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+
+/* HEADING STUFF FROM PURE CSS */
+.home-menu {
+    height: var(--header-height);
+    background: var(--primary-color);
+    padding: 0.2em;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.home-menu .pure-menu-heading {
+    color: var(--white);
+    font-weight: bolder;
+    font-size: 120%;
+    letter-spacing: 0.5em;
+}
+.home-menu a {
+    color: var(--white);
+}
+.home-menu li a:hover,
+.home-menu li a:focus {
+    background: var(--white);
+    border: none;
+    color: var(--primary-color);
+}
+.home-menu-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+.home-menu-search {
+    width: 100%;
+}
+#search {
+    width: 60%;
+}
+.pure-menu.pure-menu-fixed {
+    border-bottom: none;
+    z-index: 4;
+}
+
+.sampleTextFormContainer {
+    margin: 24px;
+}
+
+/* Font Widget */
+.font-widget-content{
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: left;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    background: aliceblue;
+    margin-bottom: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.font-widget-content p{
+    text-align: right;
+    font-size: x-small;
+}
+.font-widget a{
+    float: right;
+}
+.font-widget-header{
+    background-color: var(--secondary-color);
+    color: var(--white);
+    text-align: right;
+    height: 1.5em;
+}
+.font-widget-header p{
+    padding-right: 1%;
+    padding-top: 0.2%;
+}
+.font-widget-header2{
+    text-align: right;
+    background: #cedef5;
+}
+.font-widget-header-name{
+    padding: 4px 16px;
+}
+.font-widget-border {
+    height: 2px;
+    background: var(--secondary-color);
+}
+
+/* BUTTONS */
+.pure-button{
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+.button-green{
+    background-color: var(--green);
+}
+.button-red{
+    background-color: var(--red);
+}
+
+
+/* UPLOAD PAGE */
+.upload-font{
+    outline: dashed 2px var(--black);
+    text-align: center;
+}
+
+
+/* PROFILE PAGE */
+.profile{
+    padding: 2em;
+}
+
+.profile-info{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile-info-item{
+    margin: 8px;
+}
+.profile-avatar{
+    width: 20%;
+}
+.profile-upload-header {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    justify-content: center;
+}
+.profile-upload-button {
+    padding: 2px 6px;
+}
+
+/* FONTS PAGE */
+.font-details{
+    padding: 0 2em;
+}
+.font-details-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+}
+.font-details-element{
+    margin: 16px 0;
+}
+.font-details-title{
+    font-size: 3em;
+}
+.font-details-description{
+    font-size: 1.5em;
+}
+/* .download-font{
+    text-align: right;
+    float: right;
+} */
+.font-details-download{
+    margin-right: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.font-details-download-element{
+    padding: 8px;
+}
+
+/* FOOTER */
+.footer{
+    font-size: x-small;
+    padding-left: 1em;
+}
+
+
+.break{
+    height: 0.5em;
+    width: auto;
+    background-color: var(--primary-color);
+    margin-bottom: 24px;
+}
+
+.head-spacing{
+    height: 4em;
+}
+
+
+/* TODO: FIX THIS */
+.pure-menu-link{
+    margin-top: auto;
+}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Font Cannibals{% endblock %}
+
+{% block content %}
+<div class="innerContent">
+
+
+    <!-- <p>{{search}}</p> -->
+
+    <!-- Display Font names -->
+    {% for font in font_info %}
+        {{ font_widget(font, search_sample_text) }}
+    {% endfor %}
+</div>
+
+{% endblock %}

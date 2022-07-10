@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/main.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <title>Font Cannibals</title>
+</head>
+
+
+<!-- font_widget uses an input array where [font_id, font_name] -->
+<!-- Note: font[0] = font_id, and font[1] = font_name -->
+{% macro font_widget(font, sample_text) -%}
+<div class="font-widget">
+    <!-- <div class="font-widget-header">
+        <p> {{font[1]}} </p>
+    </div> -->
+    <div class="font-widget-header2">
+      <div class="font-widget-header-name"> {{font[1]}} </div>
+      <div class="font-widget-border"></div>
+    </div>
+
+    <div class="font-widget-content">
+
+        <!-- TODO: ADD AUTHOR HERE -->
+        <p> Uploaded by: <a href="/profile/{{ get_uploader_id(font[0]) }}">{{get_uploader_name(font[0])}}</a> </p>
+
+        <a class="pure-button" href="{{ '/details/%s'%font[0] }}"> Font Details </a>
+        <style>
+            @font-face {
+                font-family: "{{font[1]}}";
+                src: url('{{ url_for("get_font_data", font_id=font[0] )}}') format("opentype"),
+                url('{{ url_for("get_font_data", font_id=font[0] )}}') format("truetype"),
+                url('{{ url_for("get_font_data", font_id=font[0] )}}') format("woff");
+            }
+        </style>
+        <div contenteditable="true" style="font-family: '{{font[1]}}'; font-size: xx-large;">
+            {% if not sample_text %} {{ font[1] }} {% else %} {{ sample_text }} {% endif %}
+            <br>
+        </div>
+    </div>
+</div>
+{%- endmacro %}
+
+
+<body>
+  <div class="main">
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+          <div class="home-menu-left">
+            <a class="pure-menu-heading home-menu-title" href="{{ url_for('home') }}">{% block title %}{% endblock %}</a>
+            <ul class="pure-menu-list home-menu-search">
+                <!--search bar-->
+                <li class="pure-menu-item home-menu-search">
+                    <form class="pure-form" action="{{ url_for('search')}}" method="post">
+                          <input type="text" name="search" id="search" placeholder="Search for fonts" />
+                          <button type="submit" id="searchButton" class="pure-button pure-button-primary"><i class="fas fa-search"></i></button>
+                    </form>
+                </li>
+            </ul>
+          </div>
+
+            <ul class="pure-menu-list home-menu-links">
+                <li class="pure-menu-item">
+                    <a href="https://www.calligraphr.com/en/" class="pure-menu-link">Create a Font</a>
+                </li>
+                <li class="pure-menu-item">
+                    <a href="{{ url_for('upload') }}" class="pure-menu-link">Upload a Font</a>
+                </li>
+                <li class="pure-menu-item">
+                    {% if session['profile'] %}
+                    <li class="pure-menu-item">
+                      <a href="{{ '/profile/%s'%get_current_user_id() }}" class="pure-menu-link">Profile</a>
+                    </li>
+                    <li class="pure-menu-item">
+                        <a href="{{ url_for('logout') }}" class="pure-menu-link"> Logout</a>
+                    </li>
+                    {% else %}
+                    <a href="{{ url_for('login') }}" class="pure-menu-link"> Login </a> {% endif %}
+
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+  </div>
+
+</body>
+<script src="https://kit.fontawesome.com/37e300b6fc.js" crossorigin="anonymous"></script>
+</html>

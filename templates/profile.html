@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Font Cannibals{% endblock %}
+
+{% block content %}
+
+<div class="profile">
+    <div class="profile-info">
+        <img class="profile-avatar profile-info-item" src="{{userinfo['picture']}}"/>
+        <h2 class="profile-info-item"> {{userinfo['name']}} </h2>
+
+        <p class="profile-info-item" id="bio"> {{ user_bio }} </p>
+        <form action="{{ url_for('edit_bio', user_id=user_id) }}" id="form" method="POST">
+            <input type="text" name="bio" id="bio" value="{{ user_bio }}">
+            <button type="submit" class="pure-button button button-green" onclick="toggleEditBioMode()">Confirm</button>
+            <button class="pure-button button button-red" onclick="toggleEditBioMode()">Cancel</button>
+        </form>
+        {% if has_auth %} 
+            <a id="editBio" class="pure-button profile-info-item" onclick="toggleEditBioMode()"> Edit Bio </a>
+        {% endif %}
+    </div>
+    <br><br>
+    <div class="break"></div>  <!-- Delete this later (also the CSS) -->
+    <div class="innerContent">
+        <div class="profile-upload-header">
+            <h2>Uploaded Fonts ({{ font_info|length }}) </h2>
+            {% if has_auth %} 
+                <a class="pure-button profile-upload-button" href="{{ url_for('upload') }}"><i class="fa-solid fa-plus"></i></a>
+            {% endif %}
+        </div>
+        {% for font in font_info %}
+            {{ font_widget(font, sample_text) }}
+        {% endfor %}
+    </div>
+</div>
+<script src="../static/scripts/profile.js"></script>
+<script src="https://kit.fontawesome.com/37e300b6fc.js" crossorigin="anonymous"></script>
+{% endblock %}
